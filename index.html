@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>お父さんポイント</title>
+<meta name="theme-color" content="#2f6df6">
+<style>
+:root{--bg:#f5f7fb;--card:#fff;--text:#182033;--muted:#6f7a8f;--main:#2f6df6;--good:#20a464;--bad:#e25050;--shadow:0 10px 30px rgba(25,35,70,.12);--r:22px}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#eaf1ff 0,#f7f8fb 42%,#f5f7fb 100%);color:var(--text)}.app{max-width:720px;margin:0 auto;padding:18px 14px 90px}.hero{background:linear-gradient(135deg,#2f6df6,#63a1ff);color:#fff;border-radius:28px;padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-45px;top:-45px;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.16)}h1{font-size:30px;margin:0 0 8px}.total{font-size:64px;font-weight:800;line-height:1;margin:10px 0}.unit{font-size:22px;margin-left:4px}.hero p{margin:0;color:rgba(255,255,255,.86)}.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;margin-top:14px}h2{font-size:18px;margin:0 0 12px}button,input,select{font:inherit}button{border:0;border-radius:16px;padding:13px 14px;font-weight:700;background:#eef3ff;color:#174bb8}button:active{transform:scale(.98)}.primary{background:var(--main);color:#fff}.good{background:#e9f8f0;color:#08733e}.bad{background:#ffeded;color:#b82222}.warn{background:#fff6df;color:#9b6500}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.quick button{min-height:64px;text-align:left}.quick small{display:block;color:var(--muted);font-weight:600;margin-top:4px}.form{display:grid;grid-template-columns:1fr 90px;gap:10px}.form input,.form select{width:100%;border:1px solid #dce3f0;border-radius:16px;padding:13px;background:#fff}.full{grid-column:1/-1}.reward{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #e4e9f4;border-radius:18px;margin:8px 0}.reward b{display:block}.reward span{color:var(--muted);font-size:13px}.log{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #edf0f6}.log:last-child{border-bottom:0}.reason{font-weight:700}.date{font-size:12px;color:var(--muted);margin-top:3px}.delta{font-weight:800;white-space:nowrap}.plus{color:var(--good)}.minus{color:var(--bad)}.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid #dde4f0}.tabs-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom))}.tabs button{background:transparent;color:#7a8497;padding:9px 4px;border-radius:14px;font-size:12px}.tabs button.active{background:#eef3ff;color:var(--main)}.page{display:none}.page.active{display:block}.empty{color:var(--muted);text-align:center;padding:26px 0}.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.18);padding:8px 12px;border-radius:999px;font-weight:700}.actions{display:flex;gap:10px;margin-top:12px}.actions button{flex:1}@media(max-width:430px){.total{font-size:56px}.hero{padding:20px}}
+</style>
+</head>
+<body>
+<div class="app">
+<section class="hero"><div class="badge">👨 お父さんポイント</div><h1 id="dadName">お父さん</h1><div class="total"><span id="total">0</span><span class="unit">pt</span></div><p id="rankText">まずは 10pt を目指そう</p></section>
+<main id="home" class="page active">
+<section class="card quick"><h2>すぐ加点</h2><div class="grid"><button class="good" data-reason="家事をした" data-points="10">🧺 家事<small>+10pt</small></button><button class="good" data-reason="送迎した" data-points="15">🚗 送迎<small>+15pt</small></button><button class="good" data-reason="勉強を見た" data-points="20">📚 勉強を見る<small>+20pt</small></button><button class="good" data-reason="ごはんを作った" data-points="25">🍳 ごはん<small>+25pt</small></button></div></section>
+<section class="card quick"><h2>ちょっと減点</h2><div class="grid"><button class="bad" data-reason="寝落ちした" data-points="-5">😴 寝落ち<small>-5pt</small></button><button class="bad" data-reason="スマホ見すぎ" data-points="-5">📱 スマホ<small>-5pt</small></button><button class="bad" data-reason="話を聞いてない" data-points="-10">🙉 聞いてない<small>-10pt</small></button><button class="bad" data-reason="約束を忘れた" data-points="-20">💥 約束忘れ<small>-20pt</small></button></div></section>
+</main>
+<main id="add" class="page"><section class="card"><h2>自由に登録</h2><div class="form"><input id="reason" placeholder="理由 例：洗い物をした"><input id="points" type="number" placeholder="点数" value="10"><select id="who" class="full"><option>家族</option><option>Rin</option><option>Miku</option><option>お母さん</option><option>自分</option></select><button id="addBtn" class="primary full">ポイント登録</button></div></section><section class="card"><h2>名前設定</h2><div class="form"><input id="nameInput" placeholder="表示名" value="お父さん"><button id="saveName" class="primary">保存</button></div></section></main>
+<main id="rewards" class="page"><section class="card"><h2>ごほうび交換</h2><div id="rewardList"></div><div class="actions"><button id="addReward" class="warn">ごほうび追加</button></div></section></main>
+<main id="history" class="page"><section class="card"><h2>履歴</h2><div id="historyList"></div><div class="actions"><button id="exportBtn">JSON保存</button><button id="resetBtn" class="bad">全消去</button></div></section></main>
+</div>
+<nav class="tabs"><div class="tabs-inner"><button class="active" data-page="home">ホーム</button><button data-page="add">登録</button><button data-page="rewards">交換</button><button data-page="history">履歴</button></div></nav>
+<script>
+const KEY="otosanPoints.v1";
+const defaultRewards=[{name:"コーヒーをゆっくり飲む権利",cost:50},{name:"30分ひとり時間",cost:100},{name:"好きなおかずリクエスト",cost:150},{name:"休日の昼寝チケット",cost:200}];
+let state=load();
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{name:"お父さん",logs:[],rewards:defaultRewards}}catch(e){return{name:"お父さん",logs:[],rewards:defaultRewards}}}
+function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function total(){return state.logs.reduce((s,x)=>s+Number(x.points),0)}
+function addLog(reason,points,who="家族"){if(!reason||Number.isNaN(Number(points)))return;state.logs.unshift({reason,points:Number(points),who,at:new Date().toISOString()});save();render()}
+function spendReward(r){if(total()<r.cost){alert("ポイントが足りません");return}addLog("交換："+r.name,-r.cost,"ごほうび")}
+function rankText(t){if(t>=500)return"伝説のお父さんランク 👑";if(t>=300)return"かなり頼れるお父さんランク 🌟";if(t>=150)return"いい感じのお父さんランク 👍";if(t>=50)return"順調にポイント上昇中";return"まずは 10pt を目指そう"}
+function fmtDate(iso){const d=new Date(iso);return `${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function render(){const t=total();totalEl.textContent=t;rankTextEl.textContent=rankText(t);dadName.textContent=state.name||"お父さん";nameInput.value=state.name||"お父さん";rewardList.innerHTML="";state.rewards.forEach(r=>{const el=document.createElement("div");el.className="reward";el.innerHTML=`<div><b>${esc(r.name)}</b><span>${r.cost}ptで交換</span></div><button class="primary">交換</button>`;el.querySelector("button").onclick=()=>spendReward(r);rewardList.appendChild(el)});historyList.innerHTML="";if(!state.logs.length){historyList.innerHTML='<div class="empty">まだ履歴がありません</div>'}else state.logs.forEach(x=>{const div=document.createElement("div");const cls=x.points>=0?"plus":"minus";div.className="log";div.innerHTML=`<div><div class="reason">${esc(x.reason)}</div><div class="date">${esc(x.who)}・${fmtDate(x.at)}</div></div><div class="delta ${cls}">${x.points>0?"+":""}${x.points}pt</div>`;historyList.appendChild(div)})}
+const totalEl=document.getElementById("total"),rankTextEl=document.getElementById("rankText"),dadName=document.getElementById("dadName"),nameInput=document.getElementById("nameInput"),rewardList=document.getElementById("rewardList"),historyList=document.getElementById("historyList");
+document.querySelectorAll(".quick button").forEach(b=>b.onclick=()=>addLog(b.dataset.reason,Number(b.dataset.points)));
+addBtn.onclick=()=>{addLog(reason.value.trim(),Number(points.value),who.value);reason.value=""};
+saveName.onclick=()=>{state.name=nameInput.value.trim()||"お父さん";save();render()};
+addReward.onclick=()=>{const name=prompt("ごほうび名");if(!name)return;const cost=Number(prompt("必要ポイント","100"));if(!cost)return;state.rewards.push({name,cost});save();render()};
+resetBtn.onclick=()=>{if(confirm("本当に全部消しますか？")){state={name:state.name||"お父さん",logs:[],rewards:defaultRewards};save();render()}};
+exportBtn.onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="otosan-points-backup.json";a.click()};
+document.querySelectorAll(".tabs button").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));btn.classList.add("active");document.getElementById(btn.dataset.page).classList.add("active")});
+render();
+</script>
+</body>
+</html>
